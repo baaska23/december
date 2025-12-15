@@ -68,9 +68,9 @@ const BACKGROUND_FADE_START = Math.max(
 );
 
 const TYPED_LINES = [
-  ">dear m",
+  ">dear moloroo",
   "...",
-  "> today is very special day",
+  "> today is very special day, my princess",
   "...",
   "> so i made you this computer program",
   "...",
@@ -92,13 +92,13 @@ type BirthdayCardConfig = {
 const BIRTHDAY_CARDS: ReadonlyArray<BirthdayCardConfig> = [
     {
       id: "confetti-1",
-      image: "/card1.png",
+      image: "/cutest.png",
       position: [1, 0.081, -1.5], // right front of cake
       rotation: [-Math.PI / 2, 0, Math.PI / 6],
     },
     {
       id: "confetti-2",
-      image: "/card2.png",
+      image: "/guy.png",
       position: [0, 0.081, -1.7], // center front of cake
       rotation: [-Math.PI / 2, 0, 0],
     },
@@ -245,7 +245,7 @@ function AnimatedScene({
       <group ref={tableGroup}>
         <Table />
         <PictureFrame
-          image="/cat1.jpeg"
+          image="/frame.jpeg"
           position={[0, 0.735, 3]}
           rotation={[0, 5.6, 0]}
           scale={0.75}
