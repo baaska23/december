@@ -251,19 +251,19 @@ function AnimatedScene({
           scale={0.75}
         />
         <PictureFrame
-          image="/cat2.jpeg"
+          image="/zoo.jpeg"
           position={[0, 0.735, -3]}
           rotation={[0, 4.0, 0]}
           scale={0.75}
         />
         <PictureFrame
-          image="/cat3.jpeg"
+          image="/cat2.jpeg"
           position={[-1.5, 0.735, 2.5]}
           rotation={[0, 5.4, 0]}
           scale={0.75}
         />
         <PictureFrame
-          image="/cat.jpeg"
+          image="/zoo2.png"
           position={[-1.5, 0.735, -2.5]}
           rotation={[0, 4.2, 0]}
           scale={0.75}
