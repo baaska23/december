@@ -344,6 +344,7 @@ function EnvironmentBackgroundController({
 
 export default function App() {
   const [hasStarted, setHasStarted] = useState(false);
+  const [showStartButton, setShowStartButton] = useState(true);
   const [backgroundOpacity, setBackgroundOpacity] = useState(1);
   const [environmentProgress, setEnvironmentProgress] = useState(0);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
@@ -377,6 +378,12 @@ export default function App() {
       // ignore play errors (browser might block)
     });
   }, []);
+
+  const handleStartClick = useCallback(() => {
+    setHasStarted(true);
+    setShowStartButton(false);
+    playBackgroundMusic();
+  }, [playBackgroundMusic]);
 
   const typingComplete = currentLineIndex >= TYPED_LINES.length;
   const typedLines = useMemo(() => {
@@ -456,23 +463,6 @@ export default function App() {
     return () => window.clearInterval(handle);
   }, []);
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.code !== "Space" && event.key !== " ") {
-        return;
-      }
-      event.preventDefault();
-      if (!hasStarted) {
-        playBackgroundMusic();
-        setHasStarted(true);
-        return;
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [hasStarted, playBackgroundMusic]);
-
   const handleCardToggle = useCallback((id: string) => {
     setActiveCardId((current) => (current === id ? null : id));
   }, []);
@@ -481,6 +471,46 @@ export default function App() {
 
   return (
     <div className="App">
+      {showStartButton && (
+        <div 
+          className="start-button-container"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            background: 'linear-gradient(135deg, #346846ff 0%, #0d2818ff 100%)',
+            zIndex: 1000,
+          }}
+        >
+          <button 
+            className="start-button" 
+            onClick={handleStartClick}
+            style={{
+              padding: '20px 50px',
+              fontSize: '28px',
+              fontWeight: 'bold',
+              color: '#fff',
+              background: 'linear-gradient(135deg, #f0657cff 0%, #e71212ff 100%)',
+              border: '3px solid #ec8a8aff',
+              borderRadius: '15px',
+              cursor: 'pointer',
+              boxShadow: '0 8px 20px rgba(196, 30, 58, 0.4), 0 0 30px rgba(255, 215, 0, 0.3)',
+              fontFamily: 'Georgia, serif',
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+              userSelect: 'none',
+              WebkitTapHighlightColor: 'transparent',
+              touchAction: 'manipulation',
+            }}
+          >
+            🎄 Merry Christmas, my princess 🎄
+          </button>
+        </div>
+      )}
       <div
         className="background-overlay"
         style={{ opacity: backgroundOpacity }}
